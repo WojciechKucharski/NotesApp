@@ -20,35 +20,25 @@ public class ShowNote extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), toast_content, Toast.LENGTH_LONG).show();
     }
 
-    public void loadAllSortById(View view){
+    private String sortingOrder(){
         if(sorting_order) {
-            this.loadAll("ID DESC");
             sorting_order = false;
+            return "DESC";
         }
         else {
-            this.loadAll("ID ASC");
             sorting_order = true;
+            return "ASC";
         }
+    }
+
+    public void loadAllSortById(View view){
+        this.loadAll("ID " + sortingOrder());
     }
     public void loadAllSortByTitle(View view){
-        if(sorting_order) {
-            this.loadAll("TITLE DESC");
-            sorting_order = false;
-        }
-        else {
-            this.loadAll("TITLE ASC");
-            sorting_order = true;
-        }
+        this.loadAll("TITLE " + sortingOrder());
     }
     public void loadAllSortByContent(View view){
-        if(sorting_order) {
-            this.loadAll("CONTENT DESC");
-            sorting_order = false;
-        }
-        else {
-            this.loadAll("CONTENT ASC");
-            sorting_order = true;
-        }
+            this.loadAll("CONTENT " + sortingOrder());
     }
 
     public void loadAll(){this.loadAll("ID DESC");}
