@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Aplikacja z Notatkami</string>
-    <string name="app_title">Witaj w aplikacji do przechowywania i zarządzania krótkimi notatkami, zadaniami i przypomnieniami</string>
+    <string name="app_title">Witaj w aplikacji do przechowywania oraz zarządzania krótkimi notatkami, zadaniami i przypomnieniami</string>
     <string name="button1">Przejdź do notatek</string>
     <string name="back_button">Powrót</string>
     <string name="save_button">Zapisz</string>
@@ -9,6 +9,7 @@
     <string name="empty"> </string>
     <string name="note_title">Nazwa notatki</string>
     <string name="note_content">Treść notatki</string>
+    <string name="note_id">ID Notatki</string>
     <string name="aboutme">O autorze</string>
     <string name="aboutme_more">Imię i nazwisko: Wojciech Kucharski\n\nIndeks: 241197\n\nKurs: Programowanie Systemów Mobilnych\n\nTermin: Środa TN 9:35</string>
 </resources>

@@ -14,10 +14,57 @@ public class ShowNote extends AppCompatActivity {
     private ListView NoteListView;
     public static Note note;
     private static DatabaseHelper db;
+    private static boolean sorting_order = false;
 
     private void showToast(String toast_content){
         Toast.makeText(getApplicationContext(), toast_content, Toast.LENGTH_LONG).show();
     }
+
+    public void loadAllSortById(View view){
+        if(sorting_order) {
+            this.loadAll("ID DESC");
+            sorting_order = false;
+        }
+        else {
+            this.loadAll("ID ASC");
+            sorting_order = true;
+        }
+    }
+    public void loadAllSortByTitle(View view){
+        if(sorting_order) {
+            this.loadAll("TITLE DESC");
+            sorting_order = false;
+        }
+        else {
+            this.loadAll("TITLE ASC");
+            sorting_order = true;
+        }
+    }
+    public void loadAllSortByContent(View view){
+        if(sorting_order) {
+            this.loadAll("CONTENT DESC");
+            sorting_order = false;
+        }
+        else {
+            this.loadAll("CONTENT ASC");
+            sorting_order = true;
+        }
+    }
+
+    public void loadAll(){this.loadAll("ID DESC");}
+
+    public void loadAll(String sort_arg){
+        try{
+            loadFromDB(sort_arg);
+            setupListeners();
+            setAdapter();
+        }
+        catch(Exception e){
+            showToast(e.toString());
+        }
+    }
+
+
     private void setupListeners(){
         NoteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -27,15 +74,15 @@ public class ShowNote extends AppCompatActivity {
             }
         });
     }
-    private void loadFromDB(){
+    private void loadFromDB(String sort_arg){
         Note.noteList.clear();
-        Cursor cursor = db.viewData();
+        Cursor cursor = db.viewData(sort_arg);
         if (cursor.getCount() == 0){
             showToast("Notepad is empty");
         }
         else if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
-                Note newNote = new Note(cursor.getString(1), cursor.getString(2));
+                Note newNote = new Note(cursor.getString(1), cursor.getString(2), cursor.getString(0));
                 cursor.moveToNext();
             }
         }
@@ -46,8 +93,7 @@ public class ShowNote extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        loadFromDB();
-        setAdapter();
+        loadAll();
     }
     private void setAdapter()
     {
@@ -63,13 +109,6 @@ public class ShowNote extends AppCompatActivity {
         db = new DatabaseHelper(this, "DB_NAME", null, 1);
         NoteListView = findViewById(R.id.ListView);
 
-        try{
-        loadFromDB();
-        setupListeners();
-        setAdapter();
-        }
-        catch(Exception e){
-            showToast(e.toString());
-        }
+        loadAll();
     }
 }

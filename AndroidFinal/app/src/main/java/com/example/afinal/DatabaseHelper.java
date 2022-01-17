@@ -41,6 +41,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor viewData(String sort_arg) {
+        try{
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DB_TABLE + " ORDER BY " + sort_arg, null);
+        return cursor;
+        }
+        catch(Exception e){
+            return this.viewData();
+        }
+    }
+
     public boolean insertData(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -52,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteData(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursorEdit = db.rawQuery("SELECT * FROM " + DB_TABLE + " WHERE TITLE = ?", new String[]{note.getTitle()});
+        Cursor cursorEdit = db.rawQuery("SELECT * FROM " + DB_TABLE + " WHERE ID = ?", new String[]{note.getID()});
         cursorEdit.moveToFirst();
         return db.delete(DB_TABLE, "ID =?", new String[]{cursorEdit.getString(0)}) > 0;
     }
@@ -60,7 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateData(Note note, String newTitle, String newContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        Cursor cursorEdit = db.rawQuery("SELECT * FROM " + DB_TABLE + " WHERE TITLE = ?", new String[]{note.getTitle()});
+        Cursor cursorEdit = db.rawQuery("SELECT * FROM " + DB_TABLE + " WHERE ID = ?", new String[]{note.getID()});
         cursorEdit.moveToFirst();
         contentValues.put(TITLE, newTitle);
         contentValues.put(CONTENT, newContent);
