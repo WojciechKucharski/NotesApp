@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout-land/activity_about_me.xml" value="0.31040564373897706" />
+        <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout-land/activity_edit_note.xml" value="0.4691358024691358" />
+        <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout-land/activity_main.xml" value="0.4691358024691358" />
+        <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout-land/activity_new_note.xml" value="0.4691358024691358" />
+        <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout-land/activity_show_note.xml" value="0.4691358024691358" />
         <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout/activity_about_me.xml" value="0.33" />
         <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout/activity_edit_note.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/wojte/Desktop/Android/AndroidProject/AndroidFinal/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
